@@ -1,0 +1,26 @@
+title timeline of spa - new note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+note over browser:
+browser starts executing js-code
+ register form's onsubmit callback function.
+ register onreadystatechange callback function.
+ then request data.json
+end note
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
+
+browser->browser: save button pressed
+browser->browser: serialize form'data to JSON, like {content: "c", date: "2021-08-02T02:15:25.592Z"}
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server->browser: solve request and response json data {"message":"note created"}
+browser->browser: manipulating DOM render notes
